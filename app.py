@@ -1,4 +1,5 @@
 from tkinter import *
+import mysql.connector
 
 def sql_login_info():
     userName_info = userName.get()
@@ -13,6 +14,9 @@ def sql_login_info():
     print(port_info)
     print(serviceName_info)
     
+    conn = mysql.connector.connect(host= hostName_info , password = password_info , user = userName_info )
+    if conn.is_connected():
+        print("Connection established...")
   
 
 app = Tk()
