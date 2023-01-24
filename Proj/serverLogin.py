@@ -26,6 +26,7 @@ def sql_login_info():
         print("Connection established...")
         messagebox.showinfo('Success' , 'Successfully Connected!...')
         feed_inputs()
+        app.destroy()
         
     except mysql.connector.Error as error:
         messagebox.showerror('Error' ,  error)

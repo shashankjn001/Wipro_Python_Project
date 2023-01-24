@@ -3,11 +3,18 @@ from tkinter import filedialog
 from tkinter.messagebox import showinfo
 import os
 import shutil
+from output import output
 
-
+#----------------------------------------------------------------------------------------------------------
+#Submit Function
 def save_info():
     create_new_dir()
     copyFiles()
+    output()
+    
+
+#----------------------------------------------------------------------------------------------------------
+#Copy File from destination and paste it in Server Files Folder
 
 def copyFiles():
     path = '/home/User/Documents'
@@ -26,22 +33,21 @@ def copyFiles():
 # source to destination
     dest = shutil.copyfile(source, destination)
  
-
-
 # Print path of newly
 # created file
     print("Destination path:", dest)    
 
 
+#------------------------------------------------------------------------------------------------------
+#Creating a folder
 
 def create_new_dir():
     dirName = os.getcwd() + "\serverFiles"
     if not os.path.exists(dirName):
         os.makedirs(dirName, exist_ok=True)
 
-    
-
-
+#------------------------------------------------------------------------------------------------------
+#Browse File Popup    
 
 def file_browse():
     file_browse.name_file = filedialog.askopenfilename(initialdir="/", title="Select a file", filetypes=(("Text files",
@@ -51,6 +57,9 @@ def file_browse():
         title='Selected File',
         message=file_browse.name_file
     )
+    save_info()
+#-------------------------------------------------------------------------------------------------------
+#Feed Input Function
     
 def feed_inputs():
     window = Tk()
@@ -64,7 +73,7 @@ def feed_inputs():
     # imah_fileSelected = Label(window, text = "demo").place(x="300", y="350")
     # global ctc_fileSelected 
     # ctc_fileSelected = Label(window, text= "demo").place(x="300", y = "400")
-    #-----------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------
 #Lables
 
     kriType_text = Label(window,text="KRI Type : ")
@@ -101,11 +110,13 @@ def feed_inputs():
     riskIndicator_entry.place(x="115",y="203")
     srcSystem_entry.place(x="115",y="253")
     feedLocation_entry.place(x="115",y="303")
-
+#--------------------------------------------------------------------------------------------------------------
 #Button
     imah_button = Button(window, text="Browse IMAH .csv file" , width="20",  bg="grey" , fg="black" , command=file_browse)
     ctc_button = Button(window, text="Browse CTC .csv file" , width="20",  bg="grey" , fg="black" , command=file_browse)
     button = Button(window, text="Submit" , width="12",  bg="brown" , fg="white" , command=save_info)
     imah_button.place(x="115", y="350")
     ctc_button.place(x="115", y="400")
-    button.place(x="35",y="450")
+    button.place(x="170",y="450")
+
+   
